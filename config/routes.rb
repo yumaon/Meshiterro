@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   # get 'post_images/show'
   # ↓ resourcesメソッドを使用して上の３つのルーティングを一括自動生成。
   # ↓ only メソッドを使用することで生成するルーティングを限定している。
-  resources :post_images, only: [:new, :create, :index, :show]
+  resources :post_images, only: [:new, :create, :index, :show, :destroy]
 
   get 'homes/about',as:'about'
 end
