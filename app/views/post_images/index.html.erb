@@ -1,2 +1,21 @@
-<h1>PostImages#index</h1>
-<p>Find me in app/views/post_images/index.html.erb</p>
+<% @post_images.each do |post_image| %>
+<!--↑コントローラーから渡された@post_images変数内から一つずつ取り出して、post_image変数へ格納する。-->
+<div>
+  <%= image_tag post_image.get_image %>
+  <!--↑ image_tagを使いpost_imageにActiveStorageで設定したimageを表示している。-->
+  <!--↑ post_image.get_imageの部分はPostImageモデル内に記述したメソッドを呼び出している。-->
+
+  <p>投稿ユーザー画像:<%= image_tag'sample-author1.jpg' %></p>
+  <!--↑ カリキュラムでダウンロードした画像を使用する。-->
+
+  <p>ショップ:<%= post_image.shop_name %></p>
+  <!--↑ post_image変数のshop_nameカラムを表示する。このカラムは、post_imageモデルに定義されている。-->
+
+  <p>説明:<%= post_image.caption %></p>
+  <!--↑ post_image変数のcaptionカラムを表示する。このカラムも、post_imageモデルに定義されている。-->
+
+  <p>ユーザーネーム:<%= post_image.user.name %></p>
+  <!--↑ post_imege変数のuser_idに関連付けられているuserモデルのnameカラムを表示する。同様にこのカラムも、post_imageモデルに定義されている。-->
+  <!--実は、nameカラム以外にも、ユーザーモデルにカラムとして定義れている情報であれば取得できる。 post_image.user.[ユーザーモデルのカラム]-->
+</div>
+<% end %>
