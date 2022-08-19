@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   # get 'users/edit'
   # ↓ resourcesメソッドを使用して上の2つのルーティングを一括自動生成。
   # ↓ only メソッドを使用することで生成するルーティングを限定している。
-  resources :users, only: [:show, :edit]
+  resources :users, only: [:show, :edit, :update]
 
   get 'homes/about',as:'about'
 end
