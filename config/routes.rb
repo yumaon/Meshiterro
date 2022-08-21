@@ -9,6 +9,9 @@ Rails.application.routes.draw do
   # ↓ resourcesメソッドを使用して上の３つのルーティングを一括自動生成。
   # ↓ only メソッドを使用することで生成するルーティングを限定している。
   resources :post_images, only: [:new, :create, :index, :show, :destroy] do
+    resource :favorites, only: [:create, :destroy]
+    # ↑ resourcesではなくresourceになっている。単数形にすると、/:idがURLに含まれなくなる。
+
     resources :post_comments, only: [:create, :destroy]
   end
   # ↑ コメントは、投稿画像に対してコメントされる。このため、post_commentsは、post_imagesに結びつく。親子関係になる。
