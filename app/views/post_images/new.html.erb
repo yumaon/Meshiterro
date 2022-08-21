@@ -1,4 +1,17 @@
 <h1>画像投稿フォーム</h1>
+
+<% if @post_image.errors.any? %>
+  <%= @post_image.errors.count %>件のエラーが発生しました
+  <ul>
+    <% @post_image.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+<!--errorsは、モデルにバリデーションをかけたときに、発生したエラーの内容を確認できるメソッド。-->
+<!--any?と組み合わせることで、エラーが発生しているかどうかを判定できる。-->
+<!--full_messageと組み合わせることで、エラーの内容を出力できる。エラー分は配列で保存されているのでeachを使う。-->
+
 <%=form_with model: @post_image do |f| %>
   <h4>画像</h4>
     <%= f.file_field :image, accept: "image/*" %>

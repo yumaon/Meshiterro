@@ -12,6 +12,9 @@ class PostImage < ApplicationRecord
   # ↓ 画像が設定されていない場合はapp/assets/imagesに格納されているno_image.jpgという画像をデフォルト画像としてActiveStorageに格納し、格納した画像を表示する。
 
   has_many :favorites,dependent: :destroy
+  
+  validates :shop_name, presence: true
+  validates :image, presence: true
 
   def get_image
     unless image.attached?

@@ -10,8 +10,11 @@ class PostImagesController < ApplicationController
     # ↓current_userはコードに記載するだけで、ログイン中のユーザーの情報を取得できる。
     # ヘルパーメソッドと呼ばれるものの一種。deviseをインストールすることで使用可。
     @post_image.user_id = current_user.id
-    @post_image.save
-    redirect_to post_images_path
+    if  @post_image.save
+      redirect_to post_images_path
+    else
+      render :new
+    end
   end
 
   def destroy
