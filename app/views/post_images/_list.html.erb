@@ -1,0 +1,35 @@
+<!--ユーザーの投稿一覧-->
+
+<!--↓ 部分テンプレート用に@post_imagesをpost_imageに記述を変更。-->
+<% post_images.each do |post_image| %>
+<!--↑コントローラーから渡された@post_images変数内から一つずつ取り出して、post_image変数へ格納する。-->
+<div>
+  <%= link_to post_image_path(post_image.id) do %>
+    <%= image_tag post_image.get_image %>
+  <% end %>
+  <!--↑ image_tagを使いpost_imageにActiveStorageで設定したimageを表示している。-->
+  <!--↑ post_image.get_imageの部分はPostImageモデル内に記述したメソッドを呼び出している。-->
+
+  <!--<p>投稿ユーザー画像: %= image_tag'sample-author1.jpg' %></p>-->
+  <!--↑ カリキュラムでダウンロードした画像を使用する。-->
+
+  <p>投稿ユーザー画像:<%= image_tag post_image.user.get_profile_image(100,100) %></p>
+  <!--↑ post_image.userで、投稿画像に紐づいたユーザーの情報を取得できる-->
+  <!--↑ .userの部分でUserモデルを使用してるため、Userモデルに記述しているget_profile_imageメソッドが使えるようになる-->
+  <!--↑ post_image.user.get_profile_imageと記述することで、投稿画像に紐づいたユーザーのプロフィールが画像を表示できる-->
+
+  <p>ショップ:<%= post_image.shop_name %></p>
+  <!--↑ post_image変数のshop_nameカラムを表示する。このカラムは、post_imageモデルに定義されている。-->
+
+  <p>説明:<%= post_image.caption %></p>
+  <!--↑ post_image変数のcaptionカラムを表示する。このカラムも、post_imageモデルに定義されている。-->
+
+  <p>ユーザーネーム:<%= post_image.user.name %></p>
+  <!--↑ post_imege変数のuser_idに関連付けられているuserモデルのnameカラムを表示する。同様にこのカラムも、post_imageモデルに定義されている。-->
+  <!--実は、nameカラム以外にも、ユーザーモデルにカラムとして定義れている情報であれば取得できる。 post_image.user.[ユーザーモデルのカラム]-->
+
+  <p><%= link_to "#{post_image.post_comments.count}コメント",post_image_path(post_image.id) %></p>
+  <!--↑コメントの件数を表示する記述。-->
+
+</div>
+<% end %>
