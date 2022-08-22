@@ -24,7 +24,9 @@ class PostImagesController < ApplicationController
   end
 
   def index
-    @post_images=PostImage.all
+    # @post_images=PostImage.all → ページネーション機能の実装で下記に記述を変更。
+    @post_images=PostImage.page(params[:page])
+    # ↑ pageメソッドは、kaminariをインストールしたことで使用可能になったメソッド。
   end
 
   def show
