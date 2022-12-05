@@ -7,8 +7,14 @@ class PostCommentsController < ApplicationController
     # ↑ 実はこの記述の省略した記述。
 
     comment.post_image_id=post_image.id
-    comment.save
-    redirect_to post_image_path(post_image)
+    if comment.save
+      redirect_to post_image_path(post_image)
+    else
+      @post_image = PostImage.find(params[:post_image_id])
+      @post_comment=PostComment.new
+      @error_comment = comment
+      render 'post_images/show'
+    end
   end
 
   def destroy

@@ -2,9 +2,9 @@
   <div class="row no-gutters">
     <div class="col-md-5 col-sm-10 mx-2 mx-sm-auto shadow-lg rounded px-0 my-5">
     <!--col-sm-10 画面幅が576px以上の時に12分割したグリッドの10分割分の幅をとる。(10分割の幅は親要素であるrowの幅に依存する。)-->
-    <!--col-md-5 画面幅が768px以上の時に12分割したグリッドの５分割分の幅をとる。（上記同文-->
+    <!--col-md-5 画面幅が768px以上の時に12分割したグリッドの５分割分の幅をとる。（上記同文）-->
       <h5 class="text-dark bg-light p-4 mb-0">画像投稿フォーム</h5>
-      
+
       <div class="form-body p-4">
         <% if @post_image.errors.any? %>
           <ul class="alert alert-danger" role="alert">
@@ -19,7 +19,7 @@
         <!--errorsは、モデルにバリデーションをかけたときに、発生したエラーの内容を確認できるメソッド。-->
         <!--any?と組み合わせることで、エラーが発生しているかどうかを判定できる。-->
         <!--full_messageと組み合わせることで、エラーの内容を出力できる。エラー分は配列で保存されているのでeachを使う。-->
-  
+
         <%=form_with model: @post_image do |f| %>
           <%= f.file_field :image, accept: "image/*",class:"w-100" %>
           <div class="input-group mb-3 mt-4">
